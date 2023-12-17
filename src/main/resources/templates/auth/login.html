@@ -1,0 +1,376 @@
+<!--login.html-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+</head>
+<style>
+/*    .form-signin {*/
+/*        max-width: 500px;*/
+/*        padding: 40px;*/
+/*        margin: auto;*/
+/*        top: 50%;*/
+
+/*        border-radius: 5px;*/
+/*        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);*/
+/*        !*background-image: url("./templates/supermarket.jpg");*!*/
+/*        background-repeat: no-repeat;*/
+/*        background-size: cover;*/
+
+/*    }*/
+
+/*    .form-signin input[type="text"],*/
+/*    .form-signin input[type="password"] {*/
+/*        margin-bottom: 20px;*/
+/*        padding: 15px;*/
+/*        font-size: 20px;*/
+/*        border-radius: 5px;*/
+/*        border: 1px solid #ccc;*/
+/*        width: 100%;*/
+/*    }*/
+
+/*    .form-signin button[type="submit"] {*/
+/*        background-color: #4CAF50;*/
+/*        color: white;*/
+/*        font-size: 24px;*/
+/*        padding: 15px;*/
+/*        border: none;*/
+/*        border-radius: 5px;*/
+/*        width: 100%;*/
+/*        margin-top: 20px;*/
+/*    }*/
+
+/*    .form-signin a {*/
+/*        text-decoration: none;*/
+/*    }*/
+
+/*    .form-signin p {*/
+/*        color: red;*/
+/*    }*/
+/*body{*/
+/*    !*background-color: blue;*!*/
+/*    background-image: url('../supermarket.jpg');*/
+/*    !*background-repeat: no-repeat;*!*/
+/*    !*background-size: cover;*!*/
+/*    !*background-color: blue;*!*/
+/*    !*background-image: linear-gradient(#99FF33, #FFCC00);*!*/
+/*}*/
+
+.main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /*background-image: light-gradient(#FFCCCC,#6699FF);*/
+    background-color: white;
+    /*max-height: 1000px;*/
+    height: 100%;
+    /*margin: 10px;*/
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 7px 7px 10px 3px #24004628;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    /*border-radius: 4px;*/
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    /*padding: 24px;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    align-items: center;
+    padding: 20px;
+    /*border: 1px solid #ccc;*/
+    border-radius: 4px;
+    height: 100%;
+}
+
+/*checkbox to switch from sign up to login*/
+#chk {
+    display: none;
+}
+
+/*Login*/
+.login {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.login label {
+    /*margin: 25% 0 5%;*/
+}
+
+label {
+    color: #fff;
+    font-size: 2rem;
+    justify-content: center;
+    display: flex;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+}
+
+.input {
+    width: 60%;
+    height: 70%;
+    /*background: #e0dede;*/
+    background-color: white;
+    padding: 20px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+}
+
+/*Register*/
+.register {
+    background: #eee;
+    border-radius: 60% / 10%;
+    transform: translateY(5%);
+    transition: .8s ease-in-out;
+}
+
+.register label {
+    color: white;
+    transform: scale(.6);
+}
+
+#chk:checked ~ .register {
+    transform: translateY(-60%);
+}
+
+#chk:checked ~ .register label {
+    transform: scale(1);
+    margin: 10% 0 5%;
+}
+
+#chk:checked ~ .login label {
+    transform: scale(.6);
+    margin: 5% 0 5%;
+}
+/*Button*/
+.form button {
+    width: 65%;
+    height: 30px;
+    margin: 12px auto 10%;
+    color: #fff;
+    background: #573b8a;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .2s ease-in;
+}
+
+.form button:hover {
+    background-color: #6d44b8;
+}
+
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900&display=swap');
+
+
+body{
+    margin:0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.container{
+    max-width: 1170px;
+    width: 100%;
+    margin:auto;
+}
+
+.home{
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-wrap: wrap;
+    padding:50px 15px;
+    position: relative;
+}
+.home::before{
+    content: '';
+    position: absolute;
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    /*background-image: linear-gradient(#666699, #FFFFFF);*/
+    z-index: 1;
+    background-color: white;
+}
+
+.home .home-text{
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.home .home-text h1{
+    color:#ffffff;
+    font-size: 50px;
+    color:#ffffff;
+    /*width: 40%;*/
+    line-height: 56px;
+    font-weight: 700;
+    margin:0 0 20px;
+}
+.home .home-text p{
+    margin:0;
+    overflow: hidden;
+}
+.home .home-text p span{
+    font-size: 40px;
+    color:#666699;
+    font-weight: 700;
+    display: inline-block;
+    /*width: 1%;*/
+    line-height: 46px;
+    display: none;
+}
+
+.home .home-text p span.text-in{
+    display: block;
+    animation: textIn .5s ease;
+}
+.home .home-text p span.text-out{
+    animation: textOut .5s ease;
+}
+@keyframes textIn{
+    0%{
+        transform: translateY(100%);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}
+@keyframes textOut{
+    0%{
+        transform: translateY(0%);
+    }
+    100%{
+        transform: translateY(-100%);
+
+    }
+}
+
+
+.div1 {
+    display: block;
+    width: 50%;
+    float: left;
+
+}
+
+.div2 {
+    display: block;
+    width: 50%;
+    float: right;
+    padding-top: 2%;
+}
+.o{
+    /*background-image: linear-gradient(#666699, #FFFFFF);*/
+    /*fill-opacity: 1%;*/
+    /*background-color: red;*/
+    height: 100%;
+}
+
+.bdy{
+    background-color: white;
+}
+</style>
+<body class="bdy">
+<!--<h6 class="h69"></h6>-->
+<!--<p>WELCOME TO Prodify</p>-->
+
+<div class="div1">
+<section class="home">
+    <div class="container">
+        <div class="row">
+            <div class="home-text">
+                <p class="animate-text">
+                    <span>Welcome to Kelia's Supermarket </span>
+
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+
+<div class="div2">
+    <div class="o">
+<div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true">
+    <div th:if="${param.error}" style="color: red"><p>Email or Password is invalid.</p></div> <br />
+<div class="login">
+<!--<form th:action="@{/login}" method="POST" class="form-signin" class="form">-->
+    <form th:action="@{/login}" method="POST"  class="form">
+
+    <!--    <h3 th:text="Login"></h3>-->
+    <label for="chk" aria-hidden="true" style="color:darkslateblue">Log in</label>
+    <input type="text" name="email" class="input" th:placeholder="Email" /> <br /><br />
+    <input type="password" th:placeholder="Password" class="input"  name="password" />
+    <button type="Submit" th:text="Login"></button>  <button><a th:href="@{|/register|}" th:text="'Register'" style="color: white; width: 30%"></a></button>
+
+</form>
+
+</div>
+</div>
+
+</div>
+</div>
+<script>
+    const txts=document.querySelector(".animate-text").children,
+        txtsLen=txts.length;
+    let index=0;
+    const textInTimer=3000,
+        textOutTimer=2800;
+
+    function animateText() {
+        for(let i=0; i<txtsLen; i++){
+            txts[i].classList.remove("text-in","text-out");
+        }
+        txts[index].classList.add("text-in");
+
+        setTimeout(function(){
+            txts[index].classList.add("text-out");
+        },textOutTimer)
+
+        setTimeout(function(){
+
+            if(index == txtsLen-1){
+                index=0;
+            }
+            else{
+                index++;
+            }
+            animateText();
+        },textInTimer);
+    }
+
+    window.onload=animateText;
+
+</script>
+
+</body>
+</html>

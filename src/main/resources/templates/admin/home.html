@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .kelia {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            /*background-image: light-gradient(#FFCCCC,#6699FF);*/
+            background-color: white;
+            max-height: 700px;
+            /*margin: 10px;*/
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 7px 7px 10px 3px #24004628;
+            /*display: flex;*/
+            /*flex-direction: column;*/
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            /*border-radius: 4px;*/
+        }
+        .a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+
+            /*background-image: light-gradient(#FFCCCC,#6699FF);*/
+            background-color: white;
+            max-height: 700px;
+            /*margin: 10px;*/
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 7px 7px 10px 3px #24004628;
+            /*display: flex;*/
+            /*flex-direction: column;*/
+            /*align-items: center;*/
+            padding: 20px;
+            border: 1px solid #ccc;
+            /*border-radius: 4px;*/
+        }
+
+        .a a {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 2px solid #fff;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #007bff;
+            transition: all 0.3s ease-in-out;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .a a:hover {
+            background-color: #0069d9;
+            color: #fff;
+            border: 2px solid #0069d9;
+        }
+
+        .logout {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-align: right;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .logout:hover {
+            color: #0069d9;
+        }
+
+        p {
+            text-align: justify-all;
+        }
+
+    </style>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+
+<body>
+
+<!--<h2>Welcome to Admin Dashboard</h2>-->
+<div class="kelia">
+
+    <div sec:authorize="isAuthenticated()">
+        <p>LOGGED IN: <span sec:authentication="name"></span></p>
+        <p>ACCOUNT TYPE: <span sec:authentication="authorities"></span></p>
+        <p sec:authorize="hasAuthority('USER')"><a th:href="@{|/admin/home|}" th:text="'User Dashboard'"></a></p>
+        <p sec:authorize="hasAuthority('ADMIN')"><a th:href="@{|/admin/home|}" th:text="'Admin Dashboard'"></a></p>
+        <a th:href="@{/logout}">Log out</a>
+    </div>
+</div>
+<!--<h2>Welcome to Homepage</h2>-->
+<!--<p sec:authorize="hasRole('ROLE_ANONYMOUS')">Text visible to anonymous.</p>-->
+<!--<p sec:authorize="hasRole('USER')">Text visible to user.</p>-->
+<!--<p sec:authorize="hasRole('ADMIN')">Text visible to admin.</p>-->
+<!--<p sec:authorize="isAuthenticated()">Text visible only to authenticated users.</p>-->
+
+<!--<div sec:authorize="hasRole('ROLE_ANONYMOUS')">-->
+<!--    <p><a th:href="@{|/login|}" th:text="'Log in'"></a></p>-->
+<!--    <p><a th:href="@{|/register|}" th:text="'Register'"></a></p>-->
+<!--</div>-->
+
+<!--<div sec:authorize="isAuthenticated()">-->
+<!--    <p>Logged as: <span sec:authentication="name"></span></p>-->
+<!--    <p>Has role: <span sec:authentication="authorities"></span></p>-->
+<!--    <p sec:authorize="hasAuthority('USER')"><a th:href="@{|/dashboard|}" th:text="'User Dashboard'"></a></p>-->
+<!--    <p sec:authorize="hasAuthority('ADMIN')"><a th:href="@{|/admin/dashboard|}" th:text="'Admin Dashboard'"></a></p>-->
+<!--    <a th:href="@{/logout}">Log out</a>-->
+<!--</div>-->
+
+<div class="a">
+    <p sec:authorize="hasAuthority('ADMIN')"><a th:href="@{|/add|}" th:text="'Add Products'"></a></p>
+    <!--<a th:href="@{/add}">Add Products</a>-->
+
+    <!--<a th:href="@{/listing}">List Products</a>-->
+    <p sec:authorize="hasAuthority('ADMIN')"><a th:href="@{|/listing|}" th:text="'List Products'"></a></p>
+
+    <p sec:authorize="hasAuthority('ADMIN')"><a th:href="@{|/viewPeople|}" th:text="'Show Users'"></a></p>
+
+    <a th:href="@{/newbuy}">Buy Products</a>
+
+
+    <a th:href="@{/buylistings}">List Bought Products</a>
+</div>
+
+
+<!--sec:authorize="hasRole('ROLE_ANONYMOUS')">Text visible to anonymous.</p>-->
+<!--<p sec:authorize="hasRole('USER')">Text visible to user.</p>-->
+<!--<p sec:authorize="hasRole('ADMIN')">Text visible to admin.</p>-->
+<!--<p sec:authorize="isAuthenticated()">Text visible only to authenticated users.</p>-->
+
+<!--<div sec:authorize="hasRole('ROLE_ANONYMOUS')">-->
+<!--    <p><a th:href="@{|/login|}" th:text="'Log in'"></a></p>-->
+<!--    <p><a th:href="@{|/register|}" th:text="'Register'"></a></p>-->
+<!--</div>-->
+
+<!--<div sec:authorize="isAuthenticated()">-->
+<!--    <p>Logged as: <span sec:authentication="name"></span></p>-->
+<!--    <p>Has role: <span sec:authentication="authorities"></span></p>-->
+<!--    <p sec:authorize="hasAuthority('USER')"><a th:href="@{|/home|}" th:text="'User Dashboard'"></a></p>-->
+<!--    <p sec:authorize="hasAuthority('ADMIN')"><a th:href="@{|/admin/home|}" th:text="'Admin Dashboard'"></a></p>-->
+<!--    <a th:href="@{/logout}">Log out</a>-->
+<link rel="stylesheet" href="../static/home.css">
+</body>
+</html>

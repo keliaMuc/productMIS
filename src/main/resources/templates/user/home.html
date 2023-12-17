@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<style>
+    .a a {
+        display: inline-block;
+        padding: 10px 20px;
+        border: 2px solid #fff;
+        border-radius: 25px;
+        text-decoration: none;
+        font-size: 1.2em;
+        color: #fff;
+        background-color: #007bff;
+        transition: all 0.3s ease-in-out;
+        margin: 10px;
+        text-align: center;
+    }
+
+    .a a:hover {
+        background-color: #0069d9;
+        color: #fff;
+        border: 2px solid #0069d9;
+    }
+
+</style>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="a">
+<!--<a th:href="@{/add}">Add Products</a>-->
+<!--    <br>-->
+<!--<a th:href="@{/home}">List Products</a>-->
+    <br>
+
+    <a th:href="@{/newbuy}">Buy Products</a>
+    <br>
+    <a th:href="@{/buylistings}">List Bought Products</a>
+</div>
+<link rel="stylesheet" href="../static/home.css">
+</body>
+</html>

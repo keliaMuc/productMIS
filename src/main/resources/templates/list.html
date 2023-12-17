@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Product List</title>
+    <style>
+        /*body {*/
+        /*    font-family: Arial, sans-serif;*/
+        /*}*/
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgba(150, 212, 212, 0.4);
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(150, 212, 212, 0.4);
+        }
+
+        .button {
+            display: inline-block;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        /* Add this CSS code to your existing styles */
+
+        /* Button styles */
+        a.btn,
+        button.btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: #fff;
+            /*border: none;*/
+            border-radius: 0.25rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: 2px solid #ccc;
+        }
+
+        a.btn:hover,
+        button.btn:hover {
+            background-color: red;
+        }
+
+        /* Menu styles */
+        .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu-item {
+            margin: 0 10px;
+        }
+        .a a {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #007bff;
+            transition: all 0.3s ease-in-out;
+            margin: 10px;
+            text-align: center;
+        }
+        .a a:hover {
+            background-color: #0069d9;
+            color: #fff;
+            border: 2px solid #0069d9;
+        }
+        body {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            /*background-image: light-gradient(#FFCCCC,#6699FF);*/
+            background-color: white;
+            max-height: 700px;
+            /*margin: 10px;*/
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 7px 7px 10px 3px #24004628;
+            /*display: flex;*/
+            /*flex-direction: column;*/
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            /*border-radius: 4px;*/
+        }
+    </style>
+<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+<body>
+
+<h1>List of Products in Stock</h1>
+
+<table>
+  <thead>
+  <div class="menu">
+      <div class="menu-item">
+  <div class="a">
+      
+  <a th:href="@{/add}">Add Product</a>
+    <a th:href="@{/admin/home}">Home</a>
+      <a th:href="@{/openpdf/products}">Download list</a>
+     <center> <p sec:authorize="hasAuthority('ADMIN')"><a th:href="@{|/searchps|}" th:text="'Search Products'" ></a></p></center>
+
+<!--    <form method="post" th:action="@{/search}" th:Object="${search}">-->
+
+
+<!--&lt;!&ndash;        <input type="text"  th:field="*{product_name}" placeholder="Search products" required>&ndash;&gt;-->
+<!--      <button type="submit" class = "btn btn-primary">Search</button>-->
+<!--        <label>-->
+<!--            <input type="text" th:field="*{product_id}" placeholder="Enter your Product ID:">-->
+<!--        </label>-->
+<!--        <button type="submit" style="color: #171717">Search</button>-->
+<!--      <input type="button" value="Clear" onclick="clearFilter()"/>-->
+<!--    </form>-->
+
+  </div>
+      </div>
+  </div>
+
+
+  <tr>
+<!--    <th>-->
+<!--&lt;!&ndash;      <a th:href="@{'/homes/' + ${currentPage} + '?sortField=product_id&sortDir=' + ${reverseSortDir}}">&ndash;&gt;-->
+<!--        Product ID-->
+<!--&lt;!&ndash;      </a>&ndash;&gt;-->
+<!--    </th>-->
+<!--    <th>-->
+<!--&lt;!&ndash;      <a th:href="@{'/homes/' + ${currentPage} + '?sortField=product_name&sortDir=' + ${reverseSortDir}}">&ndash;&gt;-->
+<!--      Product Name-->
+<!--&lt;!&ndash;      </a>&ndash;&gt;-->
+<!--    </th>-->
+<!--    <th>-->
+<!--&lt;!&ndash;      <a th:href="@{'/homes/' + ${currentPage} + '?sortField=product_category&sortDir=' + ${reverseSortDir}}">&ndash;&gt;-->
+<!--        Product Category-->
+<!--&lt;!&ndash;      </a>&ndash;&gt;-->
+<!--    </th>-->
+<!--    <th>-->
+<!--&lt;!&ndash;      <a th:href="@{'/homes/' + ${currentPage} + '?sortField=product_price&sortDir=' + ${reverseSortDir}}">&ndash;&gt;-->
+<!--      Product Price-->
+<!--&lt;!&ndash;      </a>&ndash;&gt;-->
+<!--    </th>-->
+<!--    <th>-->
+<!--&lt;!&ndash;      <a th:href="@{'/homes/' + ${currentPage} + '?sortField=image&sortDir=' + ${reverseSortDir}}">&ndash;&gt;-->
+<!--      Product Image-->
+<!--&lt;!&ndash;      </a>&ndash;&gt;-->
+<!--    </th>-->
+<!--    <th>-->
+<!--&lt;!&ndash;      <a th:href="@{'/homes/' + ${currentPage} + '?sortField=stock&sortDir=' + ${reverseSortDir}}">&ndash;&gt;-->
+<!--        Product Stock-->
+<!--&lt;!&ndash;      </a>&ndash;&gt;-->
+<!--    </th>-->
+      <!-- Replace the existing <th> elements with the following code -->
+      <!-- Replace the existing <th> elements with the following code -->
+      <th onclick="sortTableByColumn(0)">
+          ProductID
+      </th>
+      <th onclick="sortTableByColumn(1)">
+          ProductName
+      </th>
+      <th onclick="sortTableByColumn(2)">
+          ProductCategory
+      </th>
+      <th onclick="sortTableByColumn(3)">
+          ProductPrice
+      </th>
+      <th onclick="sortTableByColumn(5)">
+          ProductStock
+      </th>
+
+
+      <th>Actions</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="md : ${Product}">
+    <td th:text="${md.product_id}"></td>
+    <td th:text="${md.product_name}"></td>
+    <td th:text="${md.product_category}"></td>
+    <td th:text="${md.product_price}"></td>
+<!--    <td><img alt="" th:src="*{'data:image/jpeg;base64,'+{md.image}}" style="width: 100px;height: 100px" src=""></td>-->
+    <td th:text="${md.stock}"></td>
+    <td>
+      <a th:href="@{/edits/{product_id}(product_id=${md.product_id})}" class="btn btn-primary">Update</a>
+    </td>
+    <td>
+      <a th:href="@{/deletes/{product_id}(product_id=${md.product_id})}" class="btn btn-danger">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+
+<div th:if = "${totalPages > 1}">
+  <div class = "row col-sm-10">
+    <div class = "col-sm-2">
+      Total Rows: [[${totalItems}]]
+    </div>
+    <div class = "col-sm-1">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != i}" th:href="@{'/homes/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+    </div>
+    <div class = "col-sm-1">
+      <a th:if="${currentPage < totalPages}" th:href="@{'/homes/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+      <span th:unless="${currentPage < totalPages}">Next</span>
+    </div>
+
+    <div class="col-sm-1">
+      <a th:if="${currentPage < totalPages}" th:href="@{'/homes/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+      <span th:unless="${currentPage < totalPages}">Last</span>
+    </div>
+  </div>
+</div>
+
+
+<!--<script type="text/javascript">-->
+<!--  function clearFilter() {-->
+<!--    window.location= '/home';-->
+<!--  }-->
+<!--</script>-->
+<!-- Add the following script after the closing </table> tag -->
+<!-- Add the following script after the closing </table> tag -->
+<script>
+    function sortTableByColumn(columnIndex) {
+        const table = document.querySelector('table');
+        const rows = Array.from(table.querySelectorAll('tbody tr'));
+
+        rows.sort((rowA, rowB) => {
+            const cellA = rowA.querySelectorAll('td')[columnIndex].innerText;
+            const cellB = rowB.querySelectorAll('td')[columnIndex].innerText;
+
+            if (isNaN(cellA) || isNaN(cellB)) {
+                return cellA.localeCompare(cellB);
+            } else {
+                return parseFloat(cellA) - parseFloat(cellB);
+            }
+        });
+
+        // Clear the table body
+        table.querySelector('tbody').innerHTML = '';
+
+        // Re-populate the table with sorted rows
+        rows.forEach(row => {
+            table.querySelector('tbody').appendChild(row);
+        });
+    }
+</script>
+
+
+</body>
+</html>

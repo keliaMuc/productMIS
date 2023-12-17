@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>UPDATE</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<style>
+    /* Set background color of body */
+    body {
+        /*background-color: transparent;*/
+        background-image: linear-gradient(#FFCC00,#00FFFF);
+    }
+
+    /* Style the form */
+    form {
+        /*background-color: beige;*/
+        border: 3px solid #33CCFF;
+        padding: 20px;
+        width: 500px;
+        margin: 0 auto;
+        border-radius: 5px;
+        /*border-color: #33CCFF;*/
+        background-image: url("../templates/supermarket.jpg");
+    }
+
+    /* Style the form labels */
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    /* Style the form inputs */
+    input {
+        padding: 10px;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-bottom: 20px;
+    }
+
+    /* Style the file input */
+    input[type="file"] {
+        margin-bottom: 10px;
+    }
+
+    /* Style the save button */
+    button[type="submit"] {
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    /* Style the "Back to List" link */
+    a {
+        color: #007bff;
+        text-decoration: none;
+        margin-top: 20px;
+        display: inline-block;
+        font-size: 16px;
+    }
+    h1{
+        text-align: center;
+        /*background-image: url(".");*/
+    }
+    /*body{*/
+    /*    background-image: url("../resources/templates/supermarket.jpg");*/
+    /*}*/
+
+</style>
+<body>
+<a href="/listing">Back to List</a>
+<h1>Update Product</h1>
+<!--<h2 style="text-align:center;"><img th:src="${image}" class="img-circle" alt="Upload pic" width="200" height="200"/></h2>-->
+<form th:action="@{/registers}" th:object="${Product}" method="post" enctype="multipart/form-data">
+    <div>
+        <label for="id">Product ID:</label>
+        <input type="text" id="id" th:field="*{product_id}">
+    </div>
+    <div>
+        <label for="name">Product Name:</label>
+        <input type="text" id="name" th:field="*{product_name}">
+    </div>
+    <div>
+        <label for="text">Product Category:</label>
+        <input type="text" id="text" th:field="*{product_category}">
+    </div>
+    <div>
+        <label for="number">Product Price:</label>
+        <input type="number" id="number" th:field="*{product_price}">
+    </div>
+    <div>
+        <label for="number">Product Stock:</label>
+        <input type="number" id="stock" th:field="*{stock}">
+    </div>
+<!--    <div>-->
+<!--        <label for="customFile">Choose File:</label>-->
+<!--        <input type="file" name="file" id="customFile" th:field="*{image}">-->
+<!--    </div>-->
+    <button type="submit">Save</button>
+</form>
+<!--<a href="/">Back to List</a>-->
+
+</body>
+</html>
